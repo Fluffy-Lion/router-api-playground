@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
 import './App.css';
-import Norris from './components/Norris'
+
 import Pokemon from './components/Pokemon'
 //information in the provided can be avaibale in the context
 const App = () => {

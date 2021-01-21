@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PokemonSearch from './PokemonSearch/PokemonSearch'
 
 const Pokemon = () => {
     const [pokemon, setPokemon] = useState("")
@@ -19,6 +20,7 @@ return (
         <button onClick={() => findDitto()}>find ditto</button>
         <h1>{pokemon}</h1>
         <img src={mainImg} />
+        <PokemonSearch />
     </div>
 )
 }
