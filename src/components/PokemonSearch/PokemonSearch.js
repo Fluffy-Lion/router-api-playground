@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './PokemonSearch.css'
 import Loading from '../Loading/Loading'
-// import PokemonTestDisplay from '../Loading/PokemonTestDisplay'
+import PokemonDisplay from '../Loading/PokemonDisplay'
 
 
 const PokemonSearch = () => {
@@ -66,10 +66,7 @@ const PokemonSearch = () => {
            <div>
                 <p>{userSearch}</p>
                 <p>search api result</p>
-                <p>{pokemon.name}</p>
-                <p>{pokemon.id}</p>
-                <p>{pokemon.type}</p>
-                <img src={pokemon.img} />
+                <PokemonDisplay pokemon={pokemon}/>
             </div> 
             : <h1>loading...</h1>           }
 
