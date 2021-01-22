@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
 import './PokemonSearch.css'
 import Loading from '../Loading/Loading'
+// import PokemonTestDisplay from '../Loading/PokemonTestDisplay'
+
 
 const PokemonSearch = () => {
+
+    // let loaded = false
+    const [loading, setLoading] = useState(true)
     const [userSearch, setUserSearch] = useState("")
-    const [pokemonResult, setPokemonResult] = useState("")
+    // const [pokemonResult, setPokemonResult] = useState("")
 
     const [pokemon, setPokemon] = useState({
+        inputMatch: false,
         name: "",
         id: "",
         img: "",
         type: ""
     })
     const searchPokemon = (e) => {
+        setLoading(false)
         e.preventDefault()
         let url = `https://pokeapi.co/api/v2/pokemon/${userSearch}`
         
@@ -20,19 +27,28 @@ const PokemonSearch = () => {
         .then(response => response.json())
         .then(data => {
             setPokemon({
+                inputMatch: true,
                 name: data.name,
                 id: data.id,
                 img: data.sprites.front_default,
                 type: data.types[0].type.name
             })
             console.log(data)
+           
         })
-
+        setTimeout(() => (setLoading(true)), 2000)
     }
+    // const loader =(pokemon) => {
+    //     console.log(pokemon.inputMatch === true ? true : false)
+    // }
+    
 
     return (
         <div className="searchBarWrapper">
-        <Loading />
+       
+
+        
+        
             <h1> search</h1>
             <form onSubmit={searchPokemon}> 
                 <input 
@@ -44,13 +60,19 @@ const PokemonSearch = () => {
                 />
                 <button>submit</button>
             </form>
+  
             
-            <p>{userSearch}</p>
-            <p>search api result</p>
-            <p>{pokemon.name}</p>
-            <p>{pokemon.id}</p>
-            <p>{pokemon.type}</p>
-            <img src={pokemon.img} />
+           { loading ? 
+           <div>
+                <p>{userSearch}</p>
+                <p>search api result</p>
+                <p>{pokemon.name}</p>
+                <p>{pokemon.id}</p>
+                <p>{pokemon.type}</p>
+                <img src={pokemon.img} />
+            </div> 
+            : <h1>loading...</h1>           }
+
         </div>
     )
 }

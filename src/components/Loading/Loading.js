@@ -1,6 +1,7 @@
 import React from 'react'
 import './Loading.css'
-const Loading = () => {
+
+const Loading = ({ inputMatch }) => {
     return (
         <h1 className="loading">loading component</h1>
     )
