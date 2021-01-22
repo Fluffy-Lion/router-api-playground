@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './PokemonSearch.css'
+import Loading from '../Loading/Loading'
 
 const PokemonSearch = () => {
     const [userSearch, setUserSearch] = useState("")
@@ -31,6 +32,7 @@ const PokemonSearch = () => {
 
     return (
         <div className="searchBarWrapper">
+        <Loading />
             <h1> search</h1>
             <form onSubmit={searchPokemon}> 
                 <input 
