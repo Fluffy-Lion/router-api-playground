@@ -9,7 +9,7 @@ const PokemonSearch = () => {
     // let loaded = false
     const [loading, setLoading] = useState(true)
     const [userSearch, setUserSearch] = useState("")
-    // const [error, setError] = useState(true)
+    const [error, setError] = useState(false)
 
     const [pokemon, setPokemon] = useState({
         name: "",
@@ -23,43 +23,47 @@ const PokemonSearch = () => {
         setLoading(false)
 
         //working call (tempermental)
-                    let url = `https://pokeapi.co/api/v2/pokemon/${userSearch}`
-                    
-                    fetch(  
-                        url
-                        )
-                    .then(response => {
-                        console.log(response)
-                        response = false
-                        if(response.ok) {
-                            return response.json()
-                        } else {
-                            throw new Error ("dId YoU sPeLl It WrOnG sOn?")
-                        }
-            
-                    })
 
-                    .then(data => {
-                        setPokemon({
-                            name: data.name,
-                            id: data.id,
-                            img: data.sprites.front_default,
-                            type: data.types[0].type.name
-                        })
+                    // let url = `https://pokeapi.co/api/v2/pokemon/${userSearch}`
+                    
+                    // fetch(  
+                    //     url
+                    //     )
+                    // .then(response => {
+
+                    //     console.log(response)
+                    //     //launch test error component
+                    //     // response = false
+
+                    //     if(response.ok) {
+                    //         return response.json()
+                    //     } else {
+                    //         throw new Error ("dId YoU sPeLl It WrOnG sOn?")
+                    //     }
+            
+                    // })
+
+                    // .then(data => {
+                    //     setPokemon({
+                    //         name: data.name,
+                    //         id: data.id,
+                    //         img: data.sprites.front_default,
+                    //         type: data.types[0].type.name
+                    //     })
                         
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        
-                    })
+                    // })
+                    // .catch((error) => {
+                    //     console.log(error)
+                    //     setError(true)
+                    // })
 
         //NO API CALLS, HARD CODED
-        // setPokemon({
-        //     name: "pikachu",
-        //     id: "25",
-        //     img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-        //     type: "electric"
-        // })
+        setPokemon({
+            name: "pikachu",
+            id: "25",
+            img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+            type: "electric"
+        })
         
         setTimeout(() => (setLoading(true)), 1000)
     }
@@ -80,7 +84,7 @@ const PokemonSearch = () => {
             </form>
   
             
-           { loading ? 
+           { loading && error === false ? 
             <div>
                 <p>{userSearch}</p>
                 <p>search api result</p>
@@ -89,10 +93,10 @@ const PokemonSearch = () => {
 
             : 
 
-            // error ?
+            error !== true ?
             <h1>loading...</h1> 
-            // :
-            // <h1>problem</h1>
+            :
+            <h1>problem</h1>
 
             }
 
