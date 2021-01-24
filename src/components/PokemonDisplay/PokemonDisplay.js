@@ -1,4 +1,5 @@
 import React from 'react'
+import './PokemonDisplay.css'
 
 const PokemonDisplay = (props) => {
  

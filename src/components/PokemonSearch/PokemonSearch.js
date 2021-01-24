@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './PokemonSearch.css'
 // import Loading from '../Loading/Loading'
-import PokemonDisplay from '../Loading/PokemonDisplay'
-// import ErrorDisplay from '../ErrorDisplay/ErrorDisplay'
+import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
+import ErrorDisplay from '../ErrorDisplay/ErrorDisplay'
 
 const PokemonSearch = () => {
 
@@ -23,39 +23,38 @@ const PokemonSearch = () => {
         setLoading(false)
 
         //working call (tempermental)
-
-                    // let url = `https://pokeapi.co/api/v2/pokemon/${userSearch}`
+                    let url = `https://pokeapi.co/api/v2/pokemon/${userSearch}`
                     
-                    // fetch(  
-                    //     url
-                    //     )
-                    // .then(response => {
+                    fetch(  
+                        url
+                        )
+                    .then(response => {
 
-                    //     console.log(response)
-                    //     //launch test error component
-                    //     // response = false
+                        console.log(response)
+                        //launch test error component
+                        response = false
 
-                    //     if(response.ok) {
-                    //         return response.json()
-                    //     } else {
-                    //         throw new Error ("dId YoU sPeLl It WrOnG sOn?")
-                    //     }
+                        if(response.ok) {
+                            return response.json()
+                        } else {
+                            throw new Error ("dId YoU sPeLl It WrOnG sOn?")
+                        }
             
-                    // })
+                    })
 
-                    // .then(data => {
-                    //     setPokemon({
-                    //         name: data.name,
-                    //         id: data.id,
-                    //         img: data.sprites.front_default,
-                    //         type: data.types[0].type.name
-                    //     })
+                    .then(data => {
+                        setPokemon({
+                            name: data.name,
+                            id: data.id,
+                            img: data.sprites.front_default,
+                            type: data.types[0].type.name
+                        })
                         
-                    // })
-                    // .catch((error) => {
-                    //     console.log(error)
-                    //     setError(true)
-                    // })
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        setError(true)
+                    })
 
         //NO API CALLS, HARD CODED
         setPokemon({
@@ -82,24 +81,18 @@ const PokemonSearch = () => {
                 />
                 <button>submit</button>
             </form>
-  
-            
            { loading && error === false ? 
             <div>
                 <p>{userSearch}</p>
                 <p>search api result</p>
                 <PokemonDisplay  pokemon={pokemon}/>
             </div> 
-
             : 
-
             error !== true ?
             <h1>loading...</h1> 
             :
-            <h1>problem</h1>
-
+            <ErrorDisplay />
             }
-
         </div>
     )
 }

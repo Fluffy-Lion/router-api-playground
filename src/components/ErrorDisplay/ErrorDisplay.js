@@ -2,7 +2,7 @@ import React from 'react'
 
 const ErrorDisplay = () => {
     return (
-        <h1>you've got an error son!</h1>
+        <h1>error display component</h1>
     )
 }
 
