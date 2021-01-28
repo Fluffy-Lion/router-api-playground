@@ -57,12 +57,12 @@ const PokemonSearch = () => {
                     })
 
         //NO API CALLS, HARD CODED
-        setPokemon({
-            name: "pikachu",
-            id: "25",
-            img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-            type: "electric"
-        })
+        // setPokemon({
+        //     name: "pikachu",
+        //     id: "25",
+        //     img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        //     type: "electric"
+        // })
         
         setTimeout(() => (setLoading(true)), 1000)
     }

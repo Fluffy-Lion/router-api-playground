@@ -1,17 +1,19 @@
 import React from 'react'
 import './PokemonDisplay.css'
 
-const PokemonDisplay = (props) => {
- 
+const PokemonDisplay = ({ pokemon }) => {
+
+
+    
     return (
     <div>
 
             <div>
                 <h1>pokemon display component</h1>
-                    <p>{props.pokemon.name}</p>
-                    <p>{props.pokemon.id}</p>
-                    <p>{props.pokemon.type}</p>
-                    <img src={props.pokemon.img} />
+                    <p>{pokemon.name}</p>
+                    <p>{pokemon.id}</p>
+                    <p>{pokemon.type}</p>
+                    {/* <img src={pokemon.sprites.front_default} alt="" /> */}
             </div> 
         
     </div>

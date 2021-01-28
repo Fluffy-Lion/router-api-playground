@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllPokemon } from '../../services/pokemon'
+import { getAllPokemon, getPokemon } from '../../services/pokemon'
 // import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
 // import PokemonMulti from '../PokemonMulti/PokemonMulti'
 
@@ -14,17 +14,22 @@ const PokemonList = () => {
     useEffect(() => {
             const fetchData = async () => {
                 let response = await getAllPokemon(initialUrl)
-                console.log(response)
                 setPrevUrl(response.previous)
                 setNextUrl(response.next)
+                await loadingPokemon(response.results)
                 setLoading(false)
 
             }
             fetchData()
         }, [])
 
-    
-
+        const loadingPokemon = async (data) => {
+            let pokemonData = await Promise.all(data.map(async pokemon => {
+                let pokemonRecord = await getPokemon(pokemon.url)
+                return pokemonRecord
+            }))
+            setPokemonData(pokemonData)
+        }
     // const listPokemon = (e) => {
         
     //     e.preventDefault()
@@ -49,13 +54,31 @@ const PokemonList = () => {
     //         })
         
     // }
+    const PokemonListDisplay = ({ pokemon }) => {
+        return (
+            <div>
+                <p>POKEMON LIST DISPLAY</p>
+                <p>{pokemon.name}</p>
+                <p>{pokemon.id}</p>
+                <img src={pokemon.sprites.front_default}/>
 
-   
+            </div>
+        )
+    }
+
     return(
         <div>
-           {loading ? <h1>loading ...</h1> : (
-                <h1>data fetched</h1>
-           )}
+           {
+           loading ? <h1>loading ...</h1> : (
+                <>
+                    <div>
+                        {pokemonData.map((pokemon, index) => {
+                            return <PokemonListDisplay key={index} pokemon={pokemon} />
+                        })}
+                    </div>
+                </>
+             )
+           }
         </div>
     )
 }
