@@ -1,58 +1,61 @@
-import React, { useState } from 'react'
-import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
-import PokemonMulti from '../PokemonMulti/PokemonMulti'
+import React, { useState, useEffect } from 'react'
+import { getAllPokemon } from '../../services/pokemon'
+// import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
+// import PokemonMulti from '../PokemonMulti/PokemonMulti'
 
 const PokemonList = () => {
-    const [pokemons] = useState([
-        {id: 1, name: "bulbasaur"},
-        {id: 2, name: "charmander"},
-        {id: 3, name: "squirtle"}
-    ])
-    const getPokemonData = (pokemonreq) => {
-        let url = pokemonreq.url
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    const [pokemonData, setPokemonData] = useState([])
+    const [nextUrl, setNextUrl] = useState('')
+    const [prevUrl, setPrevUrl] = useState('')
+    const [loading, setLoading] = useState(true)
+    const initialUrl = `https://pokeapi.co/api/v2/pokemon`
+    // `https://pokeapi.co/api/v2/pokemon?limit=151`
 
-            console.log(data.name)
-        })
-    }
+    useEffect(() => {
+            const fetchData = async () => {
+                let response = await getAllPokemon(initialUrl)
+                console.log(response)
+                setPrevUrl(response.previous)
+                setNextUrl(response.next)
+                setLoading(false)
 
+            }
+            fetchData()
+        }, [])
 
-    const listPokemon = (e) => {
+    
+
+    // const listPokemon = (e) => {
         
-        e.preventDefault()
+    //     e.preventDefault()
         
-        let url = `https://pokeapi.co/api/v2/pokemon?limit=151`
+        
 
-        fetch(url).then(response => {
-            if(response.ok) {
-                return response.json()
-            } else {
-                throw new Error ("dId YoU sPeLl It WrOnG sOn?")
-            }})
-            .then(data => {
-                data.results.forEach( pokemon => {
-                    getPokemonData(pokemon)
-                })
+    //     fetch(url).then(response => {
+    //         if(response.ok) {
+    //             return response.json()
+    //         } else {
+    //             throw new Error ("dId YoU sPeLl It WrOnG sOn?")
+    //         }})
+    //         .then(data => {
+    //             data.results.forEach( pokemon => {
+    //                 getPokemonData(pokemon)
+    //             })
                 
-            })
-            .catch((error) => {
-                console.log(error)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
 
-            })
+    //         })
         
-    }
+    // }
 
    
     return(
         <div>
-            <h2>pokemon list</h2>
-            {pokemons.map((pokemon) =>
-               <div key={`${pokemon.id} - ${pokemon.name}`}>
-                   <p>{pokemon.id}</p>
-                   <p>{pokemon.name}</p>
-               </div> )}
+           {loading ? <h1>loading ...</h1> : (
+                <h1>data fetched</h1>
+           )}
         </div>
     )
 }
