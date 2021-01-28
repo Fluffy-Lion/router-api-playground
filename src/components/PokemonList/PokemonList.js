@@ -1,42 +1,30 @@
 import React, { useState } from 'react'
 import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
+import PokemonMulti from '../PokemonMulti/PokemonMulti'
 
 const PokemonList = () => {
-
-    const [idNumber, setIdNumber] = useState(0)
-    const [pokemon, setPokemon] = useState({
-        name: "",
-        id: "",
-        img: "",
-        type: ""
-    })
-    const [pokeData, setPokeData] = useState({})
-
-    const getPokemonData = (pokemon) => {
-        let url = pokemon.url
+    const [pokemons] = useState([
+        {id: 1, name: "bulbasaur"},
+        {id: 2, name: "charmander"},
+        {id: 3, name: "squirtle"}
+    ])
+    const getPokemonData = (pokemonreq) => {
+        let url = pokemonreq.url
         fetch(url)
         .then(response => response.json())
-        .then(pokeData => 
-            setPokeData(pokeData)
-            )
+        .then(data => {
+
+            console.log(data.name)
+        })
     }
 
-    const PokemonDisplayData = (pokeData) => {
-        return(
-            <>
-                {pokeData.map}
-            </>
-        )
-    }
+
     const listPokemon = (e) => {
         
         e.preventDefault()
         
         let url = `https://pokeapi.co/api/v2/pokemon?limit=151`
-        // console.log(idNumber)
-    //    fetch(url)
-    //    .then(response => response.json())
-    //    .then(allPokemon => console.log(allPokemon))
+
         fetch(url).then(response => {
             if(response.ok) {
                 return response.json()
@@ -57,21 +45,14 @@ const PokemonList = () => {
     }
 
    
-
-    
-
     return(
         <div>
-            <button onClick={listPokemon}>fire</button>
-            {/* <button onClick={updateId}>plus one</button> */}
-            {/* <button onClick={listData}>list data func</button> */}
-            
-            <PokemonDisplay pokemon={pokemon} />
-
-            {/* <h1>{pokemon.name}</h1>
-            <p>{pokemon.id}</p>
-            <p>{pokemon.type}</p>
-            <img src={pokemon.img} /> */}
+            <h2>pokemon list</h2>
+            {pokemons.map((pokemon) =>
+               <div key={`${pokemon.id} - ${pokemon.name}`}>
+                   <p>{pokemon.id}</p>
+                   <p>{pokemon.name}</p>
+               </div> )}
         </div>
     )
 }
