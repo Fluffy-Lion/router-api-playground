@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getAllPokemon, getPokemon } from '../../services/pokemon'
-// import PokemonDisplay from '../PokemonDisplay/PokemonDisplay'
-// import PokemonMulti from '../PokemonMulti/PokemonMulti'
+import Loading from '../Loading/Loading'
 
 const PokemonList = () => {
     const [pokemonData, setPokemonData] = useState([])
@@ -69,7 +68,7 @@ const PokemonList = () => {
     return(
         <div>
            {
-           loading ? <h1>loading ...</h1> : (
+           loading ? <Loading /> : (
                 <>
                     <div>
                         {pokemonData.map((pokemon, index) => {

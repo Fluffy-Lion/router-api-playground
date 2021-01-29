@@ -32,7 +32,7 @@ const PokemonSearch = () => {
 
                         console.log(response)
                         //launch test error component
-                        response = false
+                        // response = false
 
                         if(response.ok) {
                             return response.json()
