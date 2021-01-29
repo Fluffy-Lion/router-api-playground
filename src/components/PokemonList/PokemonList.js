@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllPokemon, getPokemon } from '../../services/pokemon'
 import Loading from '../Loading/Loading'
+import './PokemonList.css'
 
 const PokemonList = () => {
     const [pokemonData, setPokemonData] = useState([])
@@ -55,8 +56,7 @@ const PokemonList = () => {
     // }
     const PokemonListDisplay = ({ pokemon }) => {
         return (
-            <div>
-                <p>POKEMON LIST DISPLAY</p>
+            <div className="listItem">
                 <p>{pokemon.name}</p>
                 <p>{pokemon.id}</p>
                 <img src={pokemon.sprites.front_default}/>
@@ -70,7 +70,7 @@ const PokemonList = () => {
            {
            loading ? <Loading /> : (
                 <>
-                    <div>
+                    <div className="listWrapper">
                         {pokemonData.map((pokemon, index) => {
                             return <PokemonListDisplay key={index} pokemon={pokemon} />
                         })}
