@@ -23,6 +23,24 @@ const PokemonList = () => {
             fetchData()
         }, [])
 
+        const next = async () => {
+            setLoading(true)
+            let data = await getAllPokemon(nextUrl)
+            await loadingPokemon(data.results)
+            setNextUrl(data.next)
+            setPrevUrl(data.previous)
+            setLoading(false)
+        }
+        const prev = async () => {
+            if (!prevUrl) return
+            setLoading(true)
+            let data = await getAllPokemon(prevUrl)
+            await loadingPokemon(data.results)
+            setNextUrl(data.next)
+            setPrevUrl(data.previous)
+            setLoading(false)
+        }
+
         const loadingPokemon = async (data) => {
             let pokemonData = await Promise.all(data.map(async pokemon => {
                 let pokemonRecord = await getPokemon(pokemon.url)
@@ -70,6 +88,10 @@ const PokemonList = () => {
            {
            loading ? <Loading /> : (
                 <>
+                    <div>
+                        <button onClick={prev}>prev</button>
+                        <button onClick={next}>next</button>
+                    </div>
                     <div className="listWrapper">
                         {pokemonData.map((pokemon, index) => {
                             return <PokemonListDisplay key={index} pokemon={pokemon} />
