@@ -3,6 +3,8 @@ import { getAllPokemon, getPokemon } from '../../services/pokemon'
 import Loading from '../Loading/Loading'
 import './PokemonList.css'
 
+import Anime from 'react-anime'
+
 const PokemonList = () => {
     const [pokemonData, setPokemonData] = useState([])
     const [nextUrl, setNextUrl] = useState('')
@@ -72,14 +74,22 @@ const PokemonList = () => {
     //         })
         
     // }
+
+    const transition = {
+        opacity: [0,1],
+        translateY: ['100vh', 0]
+    }
     const PokemonListDisplay = ({ pokemon }) => {
+        
         return (
+            <Anime {...transition}>
             <div className="listItem">
                 <p>{pokemon.name}</p>
                 <p>{pokemon.id}</p>
                 <img src={pokemon.sprites.front_default}/>
 
             </div>
+            </Anime>
         )
     }
 
