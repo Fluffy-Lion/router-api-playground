@@ -2,16 +2,18 @@
     border: solid pink 3px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .listItem {
-    border: solid blue 2px;
-
+    border: solid blue 1px;
+    background-color :rgb(210, 243, 243);
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 60%;
-    width: 30%;
-    margin: 5px;
+
+    flex-wrap: wrap;
+    width: 20%;
+    margin: 10px;
 }
 .listItem img {
     width: 8em;

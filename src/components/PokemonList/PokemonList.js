@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllPokemon, getPokemon } from '../../services/pokemon'
 import Loading from '../Loading/Loading'
 import './PokemonList.css'
+import anime from 'animejs'
 
 import Anime from 'react-anime'
 
@@ -23,8 +24,10 @@ const PokemonList = () => {
 
             }
             fetchData()
+            
+           
         }, [])
-
+        
         const next = async () => {
             setLoading(true)
             let data = await getAllPokemon(nextUrl)
@@ -49,6 +52,7 @@ const PokemonList = () => {
                 return pokemonRecord
             }))
             setPokemonData(pokemonData)
+
         }
     // const listPokemon = (e) => {
         
@@ -75,21 +79,31 @@ const PokemonList = () => {
         
     // }
 
-    const transition = {
-        opacity: [0,1],
-        translateY: ['100vh', 0]
-    }
-    const PokemonListDisplay = ({ pokemon }) => {
-        
-        return (
-            <Anime {...transition}>
-            <div className="listItem">
-                <p>{pokemon.name}</p>
-                <p>{pokemon.id}</p>
-                <img src={pokemon.sprites.front_default}/>
+    anime({
+        targets: '.pokemonImg',
+        rotateZ: 360,
+        delay: anime.stagger(100)
 
+    })
+
+
+
+    // const transition = {
+    //     // targets: 'Anime',
+    //     rotate: function() { return anime.random(-60, 60); }
+    // }
+    const PokemonListDisplay = ({ pokemon }) => {
+    
+        return (
+            <div className="listItem">
+                <Anime
+                //  {...transition}
+                 >
+                    <p className="pokemonName">{pokemon.name}</p>
+                    <p className="pokemonId">{pokemon.id}</p>
+                    <img className="pokemonImg" src={pokemon.sprites.front_default}/>
+                </Anime>
             </div>
-            </Anime>
         )
     }
 
