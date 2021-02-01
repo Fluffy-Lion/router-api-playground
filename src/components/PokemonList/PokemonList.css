@@ -1,34 +1,36 @@
+
 .listWrapper {
-    border: solid pink 3px;
+    background-color: rgb(236, 199, 206);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .listItem {
-    border: solid blue 1px;
-    background-color :rgb(210, 243, 243);
+
+    background-color :#d2f3f3;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    border-radius: 30px;;
     flex-wrap: wrap;
     width: 20%;
     margin: 10px;
+    box-shadow:1px 1px 10px  inset #9af0f0
 }
 .listItem img {
     width: 8em;
 }
 
 .buttonWrapper{
-    border: solid lime 2px;
+
     display: flex;
     justify-content: center;
 }
 
 .buttonNext {
-    background-color: cadetblue;
+    background-color: rgb(154, 248, 251);
 }
 
 .buttonPrev {
-    background-color: coral;
+    background-color: rgb(248, 160, 128);
 }
