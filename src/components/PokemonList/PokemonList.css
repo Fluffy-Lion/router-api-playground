@@ -18,3 +18,17 @@
 .listItem img {
     width: 8em;
 }
+
+.buttonWrapper{
+    border: solid lime 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonNext {
+    background-color: cadetblue;
+}
+
+.buttonPrev {
+    background-color: coral;
+}

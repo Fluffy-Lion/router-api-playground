@@ -21,12 +21,18 @@ const PokemonList = () => {
                 setNextUrl(response.next)
                 await loadingPokemon(response.results)
                 setLoading(false)
+         
+
 
             }
             fetchData()
+
+            
             
            
         }, [])
+
+
         
         const next = async () => {
             setLoading(true)
@@ -79,6 +85,8 @@ const PokemonList = () => {
         
     // }
 
+useEffect(() => {
+
     anime({
         targets: '.pokemonImg',
         rotateZ: 360,
@@ -86,6 +94,8 @@ const PokemonList = () => {
 
     })
 
+})
+   
 
 
     // const transition = {
@@ -95,9 +105,11 @@ const PokemonList = () => {
     const PokemonListDisplay = ({ pokemon }) => {
     
         return (
+
+            
             <div className="listItem">
-                <Anime
-                //  {...transition}
+                <Anime className="list"
+                //  {...anime}
                  >
                     <p className="pokemonName">{pokemon.name}</p>
                     <p className="pokemonId">{pokemon.id}</p>
@@ -112,9 +124,11 @@ const PokemonList = () => {
            {
            loading ? <Loading /> : (
                 <>
-                    <div>
-                        <button onClick={prev}>prev</button>
-                        <button onClick={next}>next</button>
+                    <div className="buttonWrapper">
+                        <Anime>
+                            <button className="buttonPrev" onClick={prev}>prev</button>
+                            <button className="buttonNext" onClick={next}>next</button>
+                        </Anime>
                     </div>
                     <div className="listWrapper">
                         {pokemonData.map((pokemon, index) => {
