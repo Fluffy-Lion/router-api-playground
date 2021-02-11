@@ -21,19 +21,10 @@ const PokemonList = () => {
                 setNextUrl(response.next)
                 await loadingPokemon(response.results)
                 setLoading(false)
-         
-
-
             }
-            fetchData()
-
-            
-            
-           
+            fetchData()    
         }, [])
 
-
-        
         const next = async () => {
             setLoading(true)
             let data = await getAllPokemon(nextUrl)
@@ -60,31 +51,6 @@ const PokemonList = () => {
             setPokemonData(pokemonData)
 
         }
-    // const listPokemon = (e) => {
-        
-    //     e.preventDefault()
-        
-        
-
-    //     fetch(url).then(response => {
-    //         if(response.ok) {
-    //             return response.json()
-    //         } else {
-    //             throw new Error ("dId YoU sPeLl It WrOnG sOn?")
-    //         }})
-    //         .then(data => {
-    //             data.results.forEach( pokemon => {
-    //                 getPokemonData(pokemon)
-    //             })
-                
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-
-    //         })
-        
-    // }
-
 useEffect(() => {
 
     anime({
@@ -95,18 +61,9 @@ useEffect(() => {
     })
 
 })
-   
 
-
-    // const transition = {
-    //     // targets: 'Anime',
-    //     rotate: function() { return anime.random(-60, 60); }
-    // }
     const PokemonListDisplay = ({ pokemon }) => {
-    
         return (
-
-            
             <div className="listItem">
                 <Anime className="list"
                 //  {...anime}
@@ -123,7 +80,7 @@ useEffect(() => {
         <div>
            {
            loading ? <Loading /> : (
-                <>
+                <div className="listComponent">
                     <div className="buttonWrapper">
                         <Anime>
                             <button className="buttonPrev" onClick={prev}>prev</button>
@@ -135,7 +92,7 @@ useEffect(() => {
                             return <PokemonListDisplay key={index} pokemon={pokemon} />
                         })}
                     </div>
-                </>
+                </div>
              )
            }
         </div>

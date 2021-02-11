@@ -1,8 +1,16 @@
+
 .App{
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(236, 240, 236);
 }
 .navBar {
+    
+    box-sizing: border-box;
+    /* border: limegreen solid 4px; */
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 40%;
+}
+
+nav > div {
+    border:magenta solid 3px;
 }

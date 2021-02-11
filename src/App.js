@@ -21,10 +21,10 @@ const App = () => {
     <div className="App">
       <Router>
         <nav className="navBar">
-          <Link to="/">home</Link>
-          <Link to="/about">about</Link>
-          <Link to="/contact">contact</Link>
-          <Link to="/pokemon">pokemon</Link>
+          <div><Link to="/">home</Link></div>
+          <div><Link to="/about">about</Link></div>
+          <div><Link to="/contact">contact</Link></div>
+          <div><Link to="/pokemon">pokemon</Link></div>
         </nav>
 
         <Switch>
@@ -49,18 +49,5 @@ const App = () => {
     </div>
   );
 }
-
-// const Norris = () => {
-//   fetch("https://api.chucknorris.io/jokes/random")
-//   .then(res => res.json())
-//   .then(data => console.log(data.value))
-//   // const fact = data.value
-//   return (
-//     <div>
-//       <h1>norris component</h1>
-//       {/* <p>{fact}</p> */}
-//     </div>
-//   )
-// }
 
 export default App;

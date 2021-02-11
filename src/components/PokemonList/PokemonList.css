@@ -1,10 +1,26 @@
+.listComponent {
+    box-sizing: border-box;;
+    flex-direction: column;
+    display:flex;
+    align-items: center;
+    
+    /* border: solid green 8px; */
+}
 
 .listWrapper {
     background-color: rgb(236, 199, 206);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 95vw;
+    /* --angle:0deg; */
+    border: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    animation: 10s rotate linear infinite;
 }
+
+
 .listItem {
 
     background-color :#d2f3f3;
